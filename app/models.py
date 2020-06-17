@@ -9,3 +9,6 @@ class Contact(models.Model):
   gender        = models.CharField(max_length=50,choices=(('male','Male'),('female','Female')))
   image        = models.ImageField(upload_to='images/',blank=True)
   date_added        = models.DateField(auto_now_add=True)
+
+  def __str__(self):
+    return self.name

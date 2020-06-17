@@ -20,3 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls'))
 ]
+
+#Customizing Admin texts
+admin.site.site_header = 'Contacts'
