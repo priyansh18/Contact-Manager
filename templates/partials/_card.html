@@ -11,7 +11,7 @@
     class="img-fluid"
   />
   <div class="card-header">
-    <a href="#" class="text-white header-link"
+    <a href="{% url 'detail' contact.id %}" class="text-white header-link"
       ><i class="fas fa-mars mr-2"></i> {{ contact.name }}</a
     >
   </div>
@@ -38,7 +38,7 @@
     class="img-fluid"
   />
   <div class="card-header">
-    <a href="#" class="text-white header-link"
+    <a href="{% url 'detail' contact.id %}" class="text-white header-link"
       ><i class="fas fa-venus mr-2"></i> {{ contact.name }}</a
     >
   </div>
