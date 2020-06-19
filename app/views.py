@@ -21,3 +21,8 @@ class HomePageView(ListView):
   template_name='index.html'
   model=Contact
   context_object_name = 'contacts'  
+
+class ContactDetailView(DetailView):
+  template_name='detail.html'
+  model=Contact
+  context_object_name = 'contact' 
