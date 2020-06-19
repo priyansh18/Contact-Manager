@@ -10,11 +10,11 @@ from django.views.generic import DetailView,ListView
 #   }
 #   return render(request,'index.html',context)
 
-def detail(request,id):
-  context:{
-    'contact':get_object_or_404(Contact,pk=id)
-  }
-  return render(request,'detail.html',context)
+# def detail(request,id):
+#   context:{
+#     'contact':get_object_or_404(Contact,pk=id)
+#   }
+#   return render(request,'detail.html',context)
 
 
 class HomePageView(ListView):
@@ -26,3 +26,9 @@ class ContactDetailView(DetailView):
   template_name='detail.html'
   model=Contact
   context_object_name = 'contact' 
+
+def search(request):
+  context={
+
+  }
+  return render(request,'search.html')  
