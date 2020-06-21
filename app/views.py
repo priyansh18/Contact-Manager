@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Contact
 from django.views.generic import DetailView,ListView
 from django.db.models import Q
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView
 
 # Create your views here.
 
@@ -53,3 +53,13 @@ class ContactCreateView(CreateView):
   template_name = 'create.html'
   fields = ['name','email','info','phone','gender','image']
   success_url = '/'    
+
+class ContactUpdateView(UpdateView):
+  model = Contact
+  template_name = 'update.html'
+  fields = ['name','email','info','phone','gender','image']
+  success_url = '/'    
+ 
+  def form_valid(self, form):
+    instance = form.save()
+    return redirect('detail',instance.pk) 
