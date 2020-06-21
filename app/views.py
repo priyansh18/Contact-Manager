@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Contact
 from django.views.generic import DetailView,ListView
 from django.db.models import Q
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -29,6 +30,7 @@ class ContactDetailView(DetailView):
   context_object_name = 'contact' 
 
 def search(request):
+
   if request.GET:
     search_term=request.GET['search_term']
     search_results = Contact.objects.filter(
@@ -45,3 +47,9 @@ def search(request):
     return render(request,'search.html',context) 
   else:
     return redirect('/')   
+
+class ContactCreateView(CreateView):
+  model = Contact
+  template_name = 'create.html'
+  fields = ['name','email','info','phone','gender','image']
+  success_url = '/'    
