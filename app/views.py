@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 # LoginRequiredMixins is only available for Class Based  Views
 # Create your views here.
@@ -57,7 +58,12 @@ class ContactCreateView(LoginRequiredMixin,CreateView):
   model = Contact
   template_name = 'create.html'
   fields = ['name','email','info','phone','gender','image']
-  success_url = '/'    
+
+  def form_valid(self, form):
+    instance = form.save(commit=False)
+    instance.manager=self.request.user
+    instance.save()
+    return redirect('home')    
 
 class ContactUpdateView(LoginRequiredMixin,UpdateView):
   model = Contact
@@ -78,4 +84,4 @@ class ContactDeleteView(LoginRequiredMixin,DeleteView):
 class SignUpView(CreateView):
   form_class = UserCreationForm
   template_name = 'registration/signup.html'
-  success_url = '/'
+  success_url = reverse_lazy('home')

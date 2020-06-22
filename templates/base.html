@@ -43,10 +43,10 @@
         <a href="{% url 'logout' %}" class="mr-4 text-white">
           <i class="fas fa-sign-in-alt"></i> &nbsp; Logout
         </a>
-        {% else %}
         <a href="{% url 'create' %}" class="mr-4 text-white">
           <i class="fas fa-plus"></i> &nbsp; Add Contact
         </a>
+        {% else %}
         <a href="{% url 'login' %}" class="mr-4 text-white">
           <i class="fas fa-sign-in-alt"></i> &nbsp; Login
         </a>
