@@ -4,7 +4,10 @@ from django.views.generic import DetailView,ListView
 from django.db.models import Q
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
+# LoginRequiredMixins is only available for Class Based  Views
 # Create your views here.
 
 # def home(request):
@@ -20,16 +23,17 @@ from django.contrib.auth.forms import UserCreationForm
 #   return render(request,'detail.html',context)
 
 
-class HomePageView(ListView):
+class HomePageView(LoginRequiredMixin,ListView):
   template_name='index.html'
   model=Contact
   context_object_name = 'contacts'  
 
-class ContactDetailView(DetailView):
+class ContactDetailView(LoginRequiredMixin,DetailView):
   template_name='detail.html'
   model=Contact
   context_object_name = 'contact' 
 
+@login_required
 def search(request):
 
   if request.GET:
@@ -49,13 +53,13 @@ def search(request):
   else:
     return redirect('/')   
 
-class ContactCreateView(CreateView):
+class ContactCreateView(LoginRequiredMixin,CreateView):
   model = Contact
   template_name = 'create.html'
   fields = ['name','email','info','phone','gender','image']
   success_url = '/'    
 
-class ContactUpdateView(UpdateView):
+class ContactUpdateView(LoginRequiredMixin,UpdateView):
   model = Contact
   template_name = 'update.html'
   fields = ['name','email','info','phone','gender','image']
@@ -65,7 +69,7 @@ class ContactUpdateView(UpdateView):
     instance = form.save()
     return redirect('detail',instance.pk) 
 
-class ContactDeleteView(DeleteView):
+class ContactDeleteView(LoginRequiredMixin,DeleteView):
   model = Contact
   template_name = 'delete.html'
   success_url = '/'      
