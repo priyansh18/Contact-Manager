@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '16&1d8d8&tkf=1#!f+!zwr_ijs$w%a*xsu7@ikvk@y3m+2$9(v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['contactssaver.herokuapp.com','127.0.0.1']
 
 
 # Application definition
